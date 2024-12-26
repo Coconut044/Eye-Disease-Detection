@@ -62,13 +62,23 @@ quiz_questions = [
     }
 ]
 
-# CSS Styling - Only apply on home and quiz pages
+# Only apply custom CSS on home and quiz pages
 if st.session_state.page in ['home', 'quiz']:
     st.markdown("""
         <style>
+            /* Set white background for the specific pages */
+            .main-background {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #FFFFFF;
+                z-index: -1;
+            }
+            
             @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
             
-            /* Main Styles */
             .main-title {
                 font-size: 72px;
                 font-weight: 800;
@@ -93,7 +103,6 @@ if st.session_state.page in ['home', 'quiz']:
                 letter-spacing: -1px;
             }
             
-            /* Modern Container Styles */
             .content-container {
                 background: rgba(255, 255, 255, 0.8);
                 backdrop-filter: blur(10px);
@@ -103,8 +112,6 @@ if st.session_state.page in ['home', 'quiz']:
                 margin: 20px 0;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
-            
-            /* Aesthetic Button Styles */
             .stButton>button {
                 width: 100%;
                 height: 90px;
@@ -133,7 +140,7 @@ if st.session_state.page in ['home', 'quiz']:
                 background: linear-gradient(135deg, #7B2CBF, #5A189A) !important;
                 margin: 20px 0 40px 0 !important;
             }
-            /* Modern Quiz Card Styles */
+            
             .quiz-card {
                 background: white;
                 padding: 35px;
@@ -160,7 +167,6 @@ if st.session_state.page in ['home', 'quiz']:
                 font-weight: 500;
             }
             
-            /* Custom Radio Buttons */
             div.row-widget.stRadio > div {
                 background: white;
                 padding: 15px;
@@ -178,7 +184,6 @@ if st.session_state.page in ['home', 'quiz']:
                 font-family: 'Space Grotesk', sans-serif;
             }
             
-            /* Result Card Styling */
             .result-card {
                 background: linear-gradient(135deg, #FFE5F1, #F3E8FF);
                 padding: 40px;
@@ -189,7 +194,6 @@ if st.session_state.page in ['home', 'quiz']:
                 border: 1px solid rgba(123, 44, 191, 0.1);
             }
             
-            /* Progress Bar Styling */
             .stProgress > div > div {
                 background-color: #FF78C4;
             }
@@ -198,23 +202,10 @@ if st.session_state.page in ['home', 'quiz']:
                 height: 20px;
             }
             
-            /* Hide Streamlit Elements */
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             header {visibility: hidden;}
             
-            /* Background Gradient - Only apply to home and quiz pages */
-            .main-page {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(135deg, #FFE5F1 0%, #F3E8FF 100%);
-                z-index: -1;
-            }
-            
-            /* Emoji Animations */
             @keyframes float {
                 0% { transform: translateY(0px); }
                 50% { transform: translateY(-10px); }
@@ -228,8 +219,8 @@ if st.session_state.page in ['home', 'quiz']:
         </style>
     """, unsafe_allow_html=True)
     
-    # Add background div only for home and quiz pages
-    st.markdown('<div class="main-page"></div>', unsafe_allow_html=True)
+    # Add white background div only for home and quiz pages
+    st.markdown('<div class="main-background"></div>', unsafe_allow_html=True)
 def calculate_result():
     cataract_score = 0
     conjunctivitis_score = 0
@@ -309,7 +300,6 @@ def quiz_page():
                         </div>
                     """, unsafe_allow_html=True)
                 st.markdown('</div>', unsafe_allow_html=True)
-
 # Main page content
 if st.session_state.page == 'home':
     st.markdown('<h1 class="main-title">👁️ Eye Disease Detection</h1>', unsafe_allow_html=True)
@@ -375,4 +365,3 @@ elif st.session_state.page == "conjunctivitis_detect":
     
     # Load conjunctivitis detection page
     exec(open(r"try.py", encoding="utf-8").read())
-                                            
