@@ -730,7 +730,7 @@ def main():
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CataractCNN().to(device)
-model.load_state_dict(torch.load(r"C:\Users\Nitya\Downloads\Eye Disease Detection\cataract.pth", map_location=device))
+model.load_state_dict(torch.load(r"cataract.pth", map_location=device))
 model.eval()
 
 transform = transforms.Compose([
