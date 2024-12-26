@@ -61,12 +61,16 @@ quiz_questions = [
         "type": "both"
     }
 ]
-
 # Only apply custom CSS on home and quiz pages
 if st.session_state.page in ['home', 'quiz']:
     st.markdown("""
         <style>
-            /* Set white background for the specific pages */
+            /* Override background for homepage */
+            [data-testid="stAppViewContainer"] {
+                background-color: """ + ('#FAF9F6' if st.session_state.page == 'home' else '#FFFFFF') + """ !important;
+            }
+            
+            /* Set background for quiz page */
             .main-background {
                 position: fixed;
                 top: 0;
@@ -75,6 +79,7 @@ if st.session_state.page in ['home', 'quiz']:
                 bottom: 0;
                 background: #FFFFFF;
                 z-index: -1;
+                display: """ + ('none' if st.session_state.page == 'home' else 'block') + """;
             }
             
             @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
@@ -219,8 +224,9 @@ if st.session_state.page in ['home', 'quiz']:
         </style>
     """, unsafe_allow_html=True)
     
-    # Add white background div only for home and quiz pages
-    st.markdown('<div class="main-background"></div>', unsafe_allow_html=True)
+    # Add background div only for quiz page
+    if st.session_state.page == 'quiz':
+        st.markdown('<div class="main-background"></div>', unsafe_allow_html=True)
 def calculate_result():
     cataract_score = 0
     conjunctivitis_score = 0
