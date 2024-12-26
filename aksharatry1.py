@@ -281,7 +281,7 @@ st.markdown("""
 def load_model():
     """Load the trained keras model"""
     try:
-        model = tf.keras.models.load_model(r"C:\Users\Nitya\Downloads\Eye Disease Detection\best_eye_disease_model.keras")
+        model = tf.keras.models.load_model(r"best_eye_disease_model.keras")
         return model
     except Exception as e:
         st.error(f"Error loading model: {e}")
