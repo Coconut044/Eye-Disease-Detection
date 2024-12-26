@@ -355,7 +355,7 @@ elif st.session_state.page == "cataract_detect":
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Load cataract detection page
-    exec(open(r"C:\Users\Nitya\Downloads\Eye Disease Detection\Cataract App.py", encoding="utf-8").read())
+    exec(open(r"Cataract App.py", encoding="utf-8").read())
 
 elif st.session_state.page == "conjunctivitis_detect":
     # Back button
@@ -366,4 +366,4 @@ elif st.session_state.page == "conjunctivitis_detect":
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Load conjunctivitis detection page
-    exec(open(r"C:\Users\Nitya\Downloads\Eye Disease Detection\aksharatry1.py", encoding="utf-8").read())
+    exec(open(r"aksharatry1.py", encoding="utf-8").read())
